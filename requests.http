@@ -1,0 +1,65 @@
+###
+POST http://localhost:8000/mascotas/crear HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Pelusa",
+    "especie": "Gato",
+    "edad": 10,
+    "disponible": ""
+}
+###
+POST http://localhost:8000/mascotas/crear HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Ramona",
+    "especie": "Gato",
+    "edad": 13,
+    "disponible": "true"
+}
+###
+GET http://localhost:8000/mascotas/buscar/3 HTTP/1.1
+###
+PUT http://localhost:8000/mascotas/actualizar/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Lola",
+    "especie": "Perro",
+    "edad": 2,
+    "disponible": ""
+}
+###
+DELETE http://localhost:8000/mascotas/eliminar/4 HTTP/1.1
+###
+POST http://localhost:8000/solicitudes/crear HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre_solicitante": "Germán",
+    "id_mascota": 5,
+    "estado": "Pendiente"
+}
+###
+POST http://localhost:8000/solicitudes/crear HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre_solicitante": "Sandra",
+    "id_mascota": 1,
+    "estado": "Pendiente"
+}
+###
+GET http://localhost:8000/solicitudes/buscar/1 HTTP/1.1
+###
+PUT http://localhost:8000/solicitudes/actualizar/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre_solicitante": "Sandra",
+    "id_mascota": 1,
+    "estado": "Aceptada"
+}
+###
+DELETE http://localhost:8000/solicitudes/eliminar/2 HTTP/1.1
