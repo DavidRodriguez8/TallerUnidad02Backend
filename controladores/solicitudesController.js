@@ -57,7 +57,7 @@ const buscarIdS = (req,res) =>{
 
 //Buscar
 const buscarS = (req,res) =>{
-    solicitudes_adopcion.findByPk().then((resultado) => {
+    solicitudes_adopcion.findAll().then((resultado) => {
         res.status(200).json(resultado);
     }).catch((err) => {
         res.status(500).json({

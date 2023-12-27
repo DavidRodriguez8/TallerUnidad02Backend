@@ -17,7 +17,7 @@ routerMascotas.get("/buscar/:id",(req,res)=>{
     buscarId(req,res);
 });
 
-routerMascotas.get("/buscar/",(req,res)=>{
+routerMascotas.get("/buscar",(req,res)=>{
     buscar(req,res);
 });
 
@@ -39,7 +39,7 @@ routerSolicitud.get("/buscar/:id",(req,res)=>{
     buscarIdS(req,res);
 });
 
-routerSolicitud.get("/buscar/",(req,res)=>{
+routerSolicitud.get("/buscar",(req,res)=>{
     buscarS(req,res);
 });
 

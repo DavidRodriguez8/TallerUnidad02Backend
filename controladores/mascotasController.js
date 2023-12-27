@@ -63,7 +63,7 @@ const buscarId = (req,res) =>{
 
 //Buscar
 const buscar = (req,res) =>{
-    mascotas.findByPk().then((resultado) => {
+    mascotas.findAll().then((resultado) => {
         res.status(200).json(resultado);
     }).catch((err) => {
         res.status(500).json({

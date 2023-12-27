@@ -25,6 +25,10 @@ const mascotas = db.define("mascotas",{
         allowNull: false,
         defaultValue: true
     }
+},{
+    timestamps: false,
+    createAt: false,
+    updatedAt: false
 });
 
 export {mascotas}
