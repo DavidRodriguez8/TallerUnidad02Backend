@@ -5,16 +5,19 @@ const crear = (req,res)=>{
 
     if(!req.body.nombre){
         res.status(400).json({
+            tipo: "error",
             mensaje: "El nombre no puede estar vacío."
         }) ;
         return;
     }else if(!req.body.especie){
         res.status(400).json({
+            tipo: "error",
             mensaje: "La especie no puede estar vacía."
         }) ;
         return;
     }else if(!req.body.edad){
         res.status(400).json({
+            tipo: "error",
             mensaje: "La edad no puede estar vacía."
         }) ;
         return;
@@ -29,10 +32,12 @@ const crear = (req,res)=>{
     //Usar Sequelize para crear el recurso
     mascotas.create(dataset).then((resultado)=>{
         res.status(200).json({
+            tipo: "success",
             mensaje: "Registro creado correctamente"
         })
     }).catch((err)=>{
         res.status(500).json({
+            tipo: "error",
             mensaje: `Error al crear el registro ::: ${err}`
         })
 
@@ -46,6 +51,7 @@ const buscarId = (req,res) =>{
     const id = req.params.id;
     if(id == null){
         res.status(203).json({
+            tipo: "error",
             mensaje: "El ID no puede estar vacío"
         });
         return;
@@ -55,6 +61,7 @@ const buscarId = (req,res) =>{
         res.status(200).json(resultado);
     }).catch((err) => {
         res.status(500).json({
+            tipo: "error",
             mensaje: `Registro no encontrado ::: ${err}`
         })
     });
@@ -67,6 +74,7 @@ const buscar = (req,res) =>{
         res.status(200).json(resultado);
     }).catch((err) => {
         res.status(500).json({
+            tipo: "error",
             mensaje: `Registro no encontrado ::: ${err}`
         })
     });
@@ -78,6 +86,7 @@ const actualizar = (req,res) => {
     const id = req.params.id;
     if(!req.body.nombre && !req.body.especie && !req.body.edad && !req.body.disponible){
         res.status(400).json({
+            tipo: "error",
             mensaje: `No se encontraron datos para actualizar`
         });
         return;
@@ -89,10 +98,12 @@ const actualizar = (req,res) => {
         mascotas.update({nombre,especie,edad,disponible},{where:{id}})
         .then((resultado) => {
             res.status(200).json({
+                tipo: "success",
                 mensaje: `Registro Actualizado`
             })
         }).catch((err) => {
             res.status(500).json({
+                tipo: "error",
                 mensaje: `Error al actualizar registro ::: ${err}`
             })
         });
@@ -105,6 +116,7 @@ const eliminar=(req,res)=>{
     const id= req.params.id;
     if(id == null){
         res.status(203).json({
+            tipo: "error",
             mensaje: `El id no puede estar vacio`
         });
         return;
@@ -112,11 +124,13 @@ const eliminar=(req,res)=>{
     mascotas.destroy({where:{id}})
     .then((resultado)=>{
         res.status(200).json({
+            tipo: "success",
             mensaje: `Registro Eliminado`
         });
     })
     .catch((err)=>{
         res.status(500).json({
+            tipo: "error",
             mensaje: `Error al eliminar Registro ::: ${err}`
         });
     })

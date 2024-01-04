@@ -5,11 +5,13 @@ const crearS = (req,res)=>{
 
     if(!req.body.nombre_solicitante){
         res.status(400).json({
+            tipo: "error",
             mensaje: "El nombre no puede estar vacío."
         }) ;
         return;
     }else if(!req.body.id_mascota){
         res.status(400).json({
+            tipo: "error",
             mensaje: "Debe relacionar la solicitud con alguna mascota existente."
         }) ;
         return;
@@ -23,10 +25,12 @@ const crearS = (req,res)=>{
     //Usar Sequelize para crear el recurso
     solicitudes_adopcion.create(dataset).then((resultado)=>{
         res.status(200).json({
+            tipo: "success",
             mensaje: "Registro creado correctamente"
         })
     }).catch((err)=>{
         res.status(500).json({
+            tipo: "error",
             mensaje: `Error al crear el registro ::: ${err}`
         })
 
@@ -40,6 +44,7 @@ const buscarIdS = (req,res) =>{
     const id = req.params.id;
     if(id == null){
         res.status(203).json({
+            tipo: "error",
             mensaje: "El ID no puede estar vacío"
         });
         return;
@@ -49,6 +54,7 @@ const buscarIdS = (req,res) =>{
         res.status(200).json(resultado);
     }).catch((err) => {
         res.status(500).json({
+            tipo: "error",
             mensaje: `Registro no encontrado ::: ${err}`
         })
     });
@@ -61,6 +67,7 @@ const buscarS = (req,res) =>{
         res.status(200).json(resultado);
     }).catch((err) => {
         res.status(500).json({
+            tipo: "error",
             mensaje: `Registro no encontrado ::: ${err}`
         })
     });
@@ -72,6 +79,7 @@ const actualizarS = (req,res) => {
     const id = req.params.id;
     if(!req.body.nombre_solicitante && !req.body.id_mascota && !req.body.estado){
         res.status(400).json({
+            tipo: "error",
             mensaje: `No se encontraron datos para actualizar`
         });
         return;
@@ -82,10 +90,12 @@ const actualizarS = (req,res) => {
         solicitudes_adopcion.update({nombre_solicitante,id_mascota,estado},{where:{id}})
         .then((resultado) => {
             res.status(200).json({
+                tipo: "success",
                 mensaje: `Registro Actualizado`
             })
         }).catch((err) => {
             res.status(500).json({
+                tipo: "error",
                 mensaje: `Error al actualizar registro ::: ${err}`
             })
         });
@@ -98,6 +108,7 @@ const eliminarS=(req,res)=>{
     const id= req.params.id;
     if(id == null){
         res.status(203).json({
+            tipo: "error",
             mensaje: `El id no puede estar vacio`
         });
         return;
@@ -105,11 +116,13 @@ const eliminarS=(req,res)=>{
     solicitudes_adopcion.destroy({where:{id}})
     .then((resultado)=>{
         res.status(200).json({
+            tipo: "success",
             mensaje: `Registro Eliminado`
         });
     })
     .catch((err)=>{
         res.status(500).json({
+            tipo: "error",
             mensaje: `Error al eliminar Registro ::: ${err}`
         });
     })

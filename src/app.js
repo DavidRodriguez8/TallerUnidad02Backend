@@ -1,5 +1,6 @@
 import express from "express";
 import { routerMascotas,routerSolicitud } from "../rutas/mascotasRouter.js";
+import { routerPersonas } from "../rutas/personasRouter.js";
 import {db} from "../database/conexion.js";
 import cors from "cors";
 
@@ -24,6 +25,7 @@ app.get("/",(req,res)=>{
 //Rutas
 app.use("/mascotas",routerMascotas);
 app.use("/solicitudes",routerSolicitud);
+app.use("/autenticacion",routerPersonas);
 
 //Puerto de Servidor 
 const PORT=8000;

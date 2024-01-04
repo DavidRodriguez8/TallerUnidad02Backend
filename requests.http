@@ -65,3 +65,22 @@ Content-Type: application/json
 }
 ###
 DELETE http://localhost:8000/solicitudes/eliminar/2 HTTP/1.1
+###
+POST http://localhost:8000/autenticacion/registro HTTP/1.1
+Content-Type: application/json
+
+{
+    "usuario": "DavidRod",
+    "nombre": "DAVID ALEJANDRO RODRIGUEZ ACOSTA",
+    "cargo": "Administrador",
+    "correo": "david@correo.com",
+    "contraseña": "david123"
+}
+###
+POST http://localhost:8000/autenticacion/autenticar HTTP/1.1
+Content-Type: application/json
+
+{
+    "correo": "david@correo.com",
+    "contraseña": "david123"
+}
